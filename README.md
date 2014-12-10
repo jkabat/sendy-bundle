@@ -14,7 +14,7 @@ Quick Start
 Features
 --------
 
-* Integrates sendy library from jacob Bennett
+* Integrates SendyPHP library from Jacob Bennett
 
 1.0.0 : 2014/12/10
 

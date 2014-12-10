@@ -1,7 +1,7 @@
 {
     "name": "tzb/sendy-bundle",
     "type": "symfony-bundle",
-    "description": "This is a Symfony2 bundle that integrates SendyPHP class from Jacob Bennett: https://github.com/JacobBennett/SendyPHP.",
+    "description": "Symfony2 bundle that integrates SendyPHP class from Jacob Bennett: https://github.com/JacobBennett/SendyPHP.",
     "keywords": ["sendy", "sendy.co", "newsletter", "integration"],
     "homepage": "https://github.com/jkabat/TbzSendyBundle",
     "license": "MIT",
