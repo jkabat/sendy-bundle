@@ -54,7 +54,7 @@ Usage
 
 Get count of total active subscribers for default list:
 
-```
+```php
 // get service
 $sendy = $this->container->get('tzb_sendy.sendy_manager');
 $count = $sendy->getSubscriberCount();
@@ -62,31 +62,31 @@ $count = $sendy->getSubscriberCount();
 
 Get count of total active subscribers for default other list:
 
-    ```php
-    $sendy = $this->container->get('tzb_sendy.sendy_manager');
-    $count = $sendy->getSubscriberCount('other_list_id');
-    ```
+```php
+$sendy = $this->container->get('tzb_sendy.sendy_manager');
+$count = $sendy->getSubscriberCount('other_list_id');
+```
 
 Get status of subscriber identified by e-mail:
 
-    ```php
-    $sendy = $this->container->get('tzb_sendy.sendy_manager');
-    $status = $sendy->getSubscriberStatus('email@example.com');
-    ```
+```php
+$sendy = $this->container->get('tzb_sendy.sendy_manager');
+$status = $sendy->getSubscriberStatus('email@example.com');
+```
 
 Subscribe user to default list (list id can be used as third parameter):
 
-    ```php
-    $sendy = $this->container->get('tzb_sendy.sendy_manager');
-    $status = $sendy->subscribe('Name', 'email@example.com');
-    ```
+```php
+$sendy = $this->container->get('tzb_sendy.sendy_manager');
+$status = $sendy->subscribe('Name', 'email@example.com');
+```
 
 Unsubscribe user from default list (list id can be used as second parameter):
 
-    ```php
-    $sendy = $this->container->get('tzb_sendy.sendy_manager');
-    $status = $sendy->unsubscribe('email@example.com');
-    ```
+```php
+$sendy = $this->container->get('tzb_sendy.sendy_manager');
+$status = $sendy->unsubscribe('email@example.com');
+```
 
 Versions
 ========
