@@ -2,7 +2,6 @@
 
 namespace Tzb\SendyBundle\Service;
 
-use Exception;
 use SendyPHP\SendyPHP;
 
 /**
