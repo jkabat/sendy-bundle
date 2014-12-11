@@ -2,6 +2,7 @@
 
 namespace Tzb\SendyBundle\DependencyInjection;
 
+use Symfony\Component\Config\Definition\Builder\ArrayNodeDefinition;
 use Symfony\Component\Config\Definition\Builder\TreeBuilder;
 use Symfony\Component\Config\Definition\ConfigurationInterface;
 
@@ -20,10 +21,39 @@ class Configuration implements ConfigurationInterface
         $treeBuilder = new TreeBuilder();
         $rootNode = $treeBuilder->root('tzb_sendy');
 
-        // Here you should define the parameters that are allowed to
-        // configure your bundle. See the documentation linked above for
-        // more information on that topic.
+        // define the parameters that are allowed to configure your SendyBundle
+        $this->addSendySection($rootNode);
 
         return $treeBuilder;
+    }
+
+    /**
+     * Parses the tzb_sendy block config section
+     * Example for yaml section:
+     * tzb_sendy:
+     *     api_key: "yourapiKEYHERE"
+     *     api_host: "http://updates.mydomain.com"
+     *     list_id: "your_list_id_goes_here"
+     *
+     * @param ArrayNodeDefinition $node
+     * @return void
+     */
+    private function addSendySection(ArrayNodeDefinition $node)
+    {
+        $node
+            ->children()
+                ->scalarNode('api_key')
+                    ->isRequired()
+                    ->cannotBeEmpty()
+                ->end()
+                ->scalarNode('api_host')
+                    ->isRequired()
+                    ->cannotBeEmpty()
+                ->end()
+                ->scalarNode('list_id')
+                    ->defaultNull()
+                ->end()
+            ->end()
+        ;
     }
 }

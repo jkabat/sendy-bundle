@@ -24,5 +24,13 @@ class TzbSendyExtension extends Extension
 
         $loader = new Loader\YamlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
         $loader->load('services.yml');
+
+        if ($config['api_host'] && strncmp($config['api_host'], 'http', 4) !== 0) {
+            $config['api_host'] = 'http://'.$config['api_host'];
+        }
+
+        $container->setParameter('tzb_sendy.api_key', $config['api_key']);
+        $container->setParameter('tzb_sendy.api_host', trim($config['api_host'], '/'));
+        $container->setParameter('tzb_sendy.list_id', $config['list_id']);
     }
 }
