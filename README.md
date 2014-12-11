@@ -55,6 +55,7 @@ Usage
 Get count of total active subscribers for default list:
 
     ```php
+    // get service
     $sendy = $this->container->get('tzb_sendy.sendy_manager');
     $count = $sendy->getSubscriberCount();
     ```
@@ -77,14 +78,14 @@ Subscribe user to default list (list id can be used as third parameter):
 
     ```php
     $sendy = $this->container->get('tzb_sendy.sendy_manager');
-    $count = $sendy->subscribe('Name', 'email@example.com');
+    $status = $sendy->subscribe('Name', 'email@example.com');
     ```
 
 Unsubscribe user from default list (list id can be used as second parameter):
 
     ```php
     $sendy = $this->container->get('tzb_sendy.sendy_manager');
-    $count = $sendy->unsubscribe('email@example.com');
+    $status = $sendy->unsubscribe('email@example.com');
     ```
 
 Versions
