@@ -1,6 +1,8 @@
 TzbSendyBundle
 ===============
 
+[![SensioLabsInsight](https://insight.sensiolabs.com/projects/df46d30d-af90-4e31-b5af-c7dc4f4bd139/big.png)](https://insight.sensiolabs.com/projects/df46d30d-af90-4e31-b5af-c7dc4f4bd139)
+
 This bundle is used to integrate the [SendyPHP class from Jacob Bennett](https://github.com/JacobBennett/SendyPHP) into a symfony2 project.
 
 This bundle is stable and tested.
@@ -21,8 +23,8 @@ Installation
     or:
 
     ```sh
-        composer require tzb/sendy-bundle
-        composer update tzb/sendy-bundle
+    composer require tzb/sendy-bundle
+    composer update tzb/sendy-bundle
     ```
 
 2. Add this bundle to your application kernel:
@@ -43,10 +45,10 @@ Installation
 
     ```yaml
     # app/config/config.yml
-        tzb_sendy:
-            api_key: sendy_api_key
-            api_host: http://sendy.installation.com
-            list_id: my_list_id // you can set/change it later
+    tzb_sendy:
+        api_key: sendy_api_key
+        api_host: http://sendy.installation.com
+        list_id: my_list_id
     ```
 
 Features
