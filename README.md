@@ -54,11 +54,11 @@ Usage
 
 Get count of total active subscribers for default list:
 
-    ```php
-    // get service
-    $sendy = $this->container->get('tzb_sendy.sendy_manager');
-    $count = $sendy->getSubscriberCount();
-    ```
+```
+// get service
+$sendy = $this->container->get('tzb_sendy.sendy_manager');
+$count = $sendy->getSubscriberCount();
+```
 
 Get count of total active subscribers for default other list:
 
