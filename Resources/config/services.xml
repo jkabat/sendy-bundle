@@ -1,0 +1,20 @@
+<?xml version="1.0" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <parameters>
+        <parameter key="tzb_sendy.sendy_manager.class">Tzb\SendyBundle\Service\SendyManager</parameter>
+    </parameters>
+
+    <services>
+        <!-- Sendy wrapper service -->
+        <service id="tzb_sendy.sendy_manager" class="%tzb_sendy.sendy_manager.class%">
+            <argument>%tzb_sendy.api_key%</argument>
+            <argument>%tzb_sendy.api_host%</argument>
+            <argument>%tzb_sendy.list_id%</argument>
+        </service>
+    </services>
+
+</container>

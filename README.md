@@ -1,11 +1,9 @@
 TzbSendyBundle
 ===============
 
-[![SensioLabsInsight](https://insight.sensiolabs.com/projects/df46d30d-af90-4e31-b5af-c7dc4f4bd139/big.png)](https://insight.sensiolabs.com/projects/df46d30d-af90-4e31-b5af-c7dc4f4bd139)
+[![SensioLabsInsight](https://insight.sensiolabs.com/projects/df46d30d-af90-4e31-b5af-c7dc4f4bd139/mini.png)](https://insight.sensiolabs.com/projects/df46d30d-af90-4e31-b5af-c7dc4f4bd139)
 
 This bundle is used to integrate the [SendyPHP class from Jacob Bennett](https://github.com/JacobBennett/SendyPHP) into a symfony2 project.
-
-This bundle is stable and tested.
 
 Installation
 ============
@@ -47,15 +45,51 @@ Installation
     # app/config/config.yml
     tzb_sendy:
         api_key: sendy_api_key
-        api_host: http://sendy.installation.com
-        list_id: my_list_id
+        api_host: http://sendy.installation.url
+        list_id: default_list_id
     ```
 
-Features
---------
+Usage
+=====
 
-* Integrates SendyPHP library from Jacob Bennett
+Get count of total active subscribers for default list:
 
-1.0.0 : 2014/12/10
+    ```php
+    $sendy = $this->container->get('tzb_sendy.sendy_manager');
+    $count = $sendy->getSubscriberCount();
+    ```
+
+Get count of total active subscribers for default other list:
+
+    ```php
+    $sendy = $this->container->get('tzb_sendy.sendy_manager');
+    $count = $sendy->getSubscriberCount('other_list_id');
+    ```
+
+Get status of subscriber identified by e-mail:
+
+    ```php
+    $sendy = $this->container->get('tzb_sendy.sendy_manager');
+    $status = $sendy->getSubscriberStatus('email@example.com');
+    ```
+
+Subscribe user to default list (list id can be used as third parameter):
+
+    ```php
+    $sendy = $this->container->get('tzb_sendy.sendy_manager');
+    $count = $sendy->subscribe('Name', 'email@example.com');
+    ```
+
+Unsubscribe user from default list (list id can be used as second parameter):
+
+    ```php
+    $sendy = $this->container->get('tzb_sendy.sendy_manager');
+    $count = $sendy->unsubscribe('email@example.com');
+    ```
+
+Versions
+========
+
+1.0.0 : 2014/12/11
 
 * first release
