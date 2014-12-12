@@ -2,6 +2,8 @@
 
 namespace Tzb\SendyBundle\Service;
 
+use Tzb\SendyBundle\SendyException;
+
 /**
  * Manager interface for communication with Sendy.co api
  *
@@ -15,7 +17,8 @@ interface SendyManagerInterface
      * @param string $list
      *
      * @access public
-     * @return int|bool
+     * @return int
+     * @throws SendyException
      */
     public function getSubscriberCount($list = '');
 
@@ -26,7 +29,8 @@ interface SendyManagerInterface
      * @param string $list
      *
      * @access public
-     * @return string|bool
+     * @return string
+     * @throws SendyException
      */
     public function getSubscriberStatus($email, $list = '');
 
@@ -36,7 +40,6 @@ interface SendyManagerInterface
      * @param string $list
      *
      * @access public
-     * @return void
      */
     public function setList($list);
 
@@ -49,6 +52,7 @@ interface SendyManagerInterface
      *
      * @access public
      * @return bool
+     * @throws SendyException
      */
     public function subscribe($name, $email, $list = '');
 
@@ -60,6 +64,7 @@ interface SendyManagerInterface
      *
      * @access public
      * @return bool
+     * @throws SendyException
      */
     public function unsubscribe($email, $list = '');
 }
