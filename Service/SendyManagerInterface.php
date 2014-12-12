@@ -10,20 +10,12 @@ namespace Tzb\SendyBundle\Service;
 interface SendyManagerInterface
 {
     /**
-     * Get error message and erase property
-     *
-     * @access public
-     * @return string
-     */
-    public function getError();
-
-    /**
      * Get count of total active subscribers for the list
      *
      * @param string $list
      *
      * @access public
-     * @return int
+     * @return int|bool
      */
     public function getSubscriberCount($list = '');
 
@@ -34,7 +26,7 @@ interface SendyManagerInterface
      * @param string $list
      *
      * @access public
-     * @return string
+     * @return string|bool
      */
     public function getSubscriberStatus($email, $list = '');
 
