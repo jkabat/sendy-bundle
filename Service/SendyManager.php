@@ -73,6 +73,7 @@ class SendyManager implements SendyManagerInterface
 
         $result = $this->manager->substatus($email);
 
+        // check status and throw exception
         if (false === $result['status']) {
             throw new SendyException($result['message']);
         }
@@ -116,6 +117,7 @@ class SendyManager implements SendyManagerInterface
 
         $result = $this->manager->subscribe($config);
 
+        // check status and throw exception
         if (false === $result['status']) {
             throw new SendyException($result['message']);
         }
@@ -141,6 +143,7 @@ class SendyManager implements SendyManagerInterface
 
         $result = $this->manager->unsubscribe($email);
 
+        // check status and throw exception
         if (false === $result['status']) {
             throw new SendyException($result['message']);
         }

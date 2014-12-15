@@ -40,7 +40,7 @@ Installation
     }
     ```
 
-3. Configure `ornicar_apc` service:
+3. Configure `sendy_manager` service:
 
     ```yaml
     # app/config/config.yml
@@ -61,7 +61,7 @@ $sendy = $this->container->get('tzb_sendy.sendy_manager');
 $count = $sendy->getSubscriberCount();
 ```
 
-Get count of total active subscribers for default other list:
+Get count of total active subscribers for other list:
 
 ```php
 $sendy = $this->container->get('tzb_sendy.sendy_manager');
@@ -75,14 +75,14 @@ $sendy = $this->container->get('tzb_sendy.sendy_manager');
 $status = $sendy->getSubscriberStatus('email@example.com');
 ```
 
-Subscribe user to default list (list id can be used as third parameter):
+Subscribe user to default list (other list id can be used as third parameter):
 
 ```php
 $sendy = $this->container->get('tzb_sendy.sendy_manager');
 $status = $sendy->subscribe('Name', 'email@example.com');
 ```
 
-Unsubscribe user from default list (list id can be used as second parameter):
+Unsubscribe user from default list (other list id can be used as second parameter):
 
 ```php
 $sendy = $this->container->get('tzb_sendy.sendy_manager');
@@ -91,6 +91,16 @@ $status = $sendy->unsubscribe('email@example.com');
 
 Versions
 ========
+
+1.0.2 : 2014/12/12
+
+* getError property removal
+* new: SendyException
+
+1.0.1 : 2014/12/11
+
+* doc enhancement
+* new: badges section
 
 1.0.0 : 2014/12/11
 
