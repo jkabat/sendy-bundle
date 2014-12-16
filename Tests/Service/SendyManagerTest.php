@@ -2,9 +2,6 @@
 
 namespace Tzb\SendyBundle\Tests\Service;
 
-use Symfony\Bundle\FrameworkBundle\Client;
-use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
-
 use Tzb\SendyBundle\Service\SendyManagerInterface;
 use Tzb\SendyBundle\Tests\Mocks\SendyManager;
 use Tzb\SendyBundle\Tests\Mocks\SendyPHP;

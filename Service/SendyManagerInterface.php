@@ -40,6 +40,7 @@ interface SendyManagerInterface
      * @param string $list
      *
      * @access public
+     * @return void
      */
     public function setList($list);
 

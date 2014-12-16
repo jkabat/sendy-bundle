@@ -4,7 +4,6 @@ namespace Tzb\SendyBundle\Tests\DependencyInjection;
 
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\Yaml\Parser;
-
 use Tzb\SendyBundle\DependencyInjection\TzbSendyExtension;
 
 class TzbSendyExtensionTest extends \PHPUnit_Framework_TestCase
