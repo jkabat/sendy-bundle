@@ -13,7 +13,7 @@ use Tzb\SendyBundle\SendyException;
 class SendyManager implements SendyManagerInterface
 {
     /** @var SendyPHP */
-    protected $manager;
+    protected $sendy;
 
     /**
      * @param string $apiKey
@@ -31,7 +31,7 @@ class SendyManager implements SendyManagerInterface
             'list_id' => $list
         );
 
-        $this->manager = new SendyPHP($config);
+        $this->sendy = new SendyPHP($config);
     }
 
     /**
@@ -45,7 +45,7 @@ class SendyManager implements SendyManagerInterface
      */
     public function getSubscriberCount($list = '')
     {
-        $result = $this->manager->subcount($list);
+        $result = $this->sendy->subcount($list);
 
         // check status and throw exception
         if (false === $result['status']) {
@@ -71,7 +71,7 @@ class SendyManager implements SendyManagerInterface
             $this->setList($list);
         }
 
-        $result = $this->manager->substatus($email);
+        $result = $this->sendy->substatus($email);
 
         // check status and throw exception
         if (false === $result['status']) {
@@ -90,7 +90,7 @@ class SendyManager implements SendyManagerInterface
      */
     public function setList($list)
     {
-        $this->manager->setListId($list);
+        $this->sendy->setListId($list);
     }
 
     /**
@@ -115,7 +115,7 @@ class SendyManager implements SendyManagerInterface
             'email' => $email,
         );
 
-        $result = $this->manager->subscribe($config);
+        $result = $this->sendy->subscribe($config);
 
         // check status and throw exception
         if (false === $result['status']) {
@@ -141,7 +141,7 @@ class SendyManager implements SendyManagerInterface
             $this->setList($list);
         }
 
-        $result = $this->manager->unsubscribe($email);
+        $result = $this->sendy->unsubscribe($email);
 
         // check status and throw exception
         if (false === $result['status']) {

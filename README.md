@@ -9,46 +9,58 @@ This bundle is used to integrate the [SendyPHP class from Jacob Bennett](https:/
 Installation
 ============
 
-1. Add it to your composer.json:
+Step 1: Download the Bundle
+---------------------------
 
-    ```json
-    {
-        "require": {
-            "tzb/sendy-bundle": "~1.0"
-        }
-    }
-    ```
+Open a command console, enter your project directory and execute the
+following command to download the latest stable version of this bundle:
 
-    or:
+```bash
+$ composer require tzb/sendy-bundle "~1"
+```
 
-    ```sh
-    composer require tzb/sendy-bundle:~1.0
-    composer update tzb/sendy-bundle
-    ```
+This command requires you to have Composer installed globally, as explained
+in the [installation chapter](https://getcomposer.org/doc/00-intro.md)
+of the Composer documentation.
 
-2. Add this bundle to your application kernel:
+Step 2: Enable the Bundle
+-------------------------
 
-    ```php
-    // app/AppKernel.php
+Then, enable the bundle by adding the following line in the `app/AppKernel.php`
+file of your project:
+
+```php
+<?php
+// app/AppKernel.php
+
+// ...
+class AppKernel extends Kernel
+{
     public function registerBundles()
     {
-        return array(
+        $bundles = array(
             // ...
+
             new Tzb\SendyBundle\TzbSendyBundle(),
-            // ...
         );
+
+        // ...
     }
-    ```
 
-3. Configure `sendy_manager` service:
+    // ...
+}
+```
 
-    ```yaml
-    # app/config/config.yml
-    tzb_sendy:
-        api_key: sendy_api_key
-        api_host: http://sendy.installation.url
-        list_id: default_list_id
-    ```
+Step 3: Configure `sendy_manager` Service
+-----------------------------------------
+
+```yaml
+# app/config/config.yml
+tzb_sendy:
+    api_key: sendy_api_key
+    api_host: http://sendy.installation.url
+    list_id: default_list_id
+```
 
 Usage
 =====
@@ -91,6 +103,11 @@ $status = $sendy->unsubscribe('email@example.com');
 
 Versions
 ========
+
+1.0.3 : 2014/12/16
+
+* minor doc enhancements
+* new: unit tests coverage
 
 1.0.2 : 2014/12/12
 
