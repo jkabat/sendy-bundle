@@ -5,15 +5,23 @@
     xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
     <parameters>
+        <parameter key="tzb_sendy.sendyphp.class">SendyPHP\SendyPHP</parameter>
         <parameter key="tzb_sendy.sendy_manager.class">Tzb\SendyBundle\Service\SendyManager</parameter>
     </parameters>
 
     <services>
+        <!-- SendyPHP service -->
+        <service id="tzb_sendy.sendyphp" class="%tzb_sendy.sendyphp.class%">
+            <argument type="collection">
+                <argument key="api_key">%tzb_sendy.api_key%</argument>
+                <argument key="installation_url">%tzb_sendy.api_host%</argument>
+                <argument key="list_id">%tzb_sendy.list_id%</argument>
+            </argument>
+        </service>
+
         <!-- Sendy wrapper service -->
         <service id="tzb_sendy.sendy_manager" class="%tzb_sendy.sendy_manager.class%">
-            <argument>%tzb_sendy.api_key%</argument>
-            <argument>%tzb_sendy.api_host%</argument>
-            <argument>%tzb_sendy.list_id%</argument>
+            <argument type="service" id="tzb_sendy.sendyphp"/>
         </service>
     </services>
 

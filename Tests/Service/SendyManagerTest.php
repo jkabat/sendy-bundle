@@ -2,8 +2,8 @@
 
 namespace Tzb\SendyBundle\Tests\Service;
 
+use Tzb\SendyBundle\Service\SendyManager;
 use Tzb\SendyBundle\Service\SendyManagerInterface;
-use Tzb\SendyBundle\Tests\Mocks\SendyManager;
 use Tzb\SendyBundle\Tests\Mocks\SendyPHP;
 
 /**
@@ -30,9 +30,16 @@ class SendyManagerTest extends \PHPUnit_Framework_TestCase
             'list_id'           => 'example_list',
         ));
 
-        // create mock for SendyManager
-        $this->manager = new SendyManager('example_key', 'example.host', 'example_list');
-        $this->manager->setSendy($sendy);
+        // create SendyManager object
+        $this->manager = new SendyManager($sendy);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    protected function tearDown()
+    {
+        unset($this->manager);
     }
 
     /**

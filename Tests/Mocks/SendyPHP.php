@@ -11,48 +11,31 @@ use SendyPHP\SendyPHP as Base;
  */
 class SendyPHP extends Base
 {
-    protected $installation_url;
-    protected $api_key;
-    protected $list_id;
+    private $lists = array(
+        'example_list',
+        'example_list2',
+    );
 
-    protected $subscribers = array(
-        'john@example.com' => array(
-            'name'          => 'John Doe',
-            'subscribed'    => true,
+    private $subscribers = array(
+        'example_list' => array(
+            'john@example.com',
+            'jane@example.com',
         ),
-        'jane@example.com' => array(
-            'name'          => 'Jane Doe',
-            'subscribed'    => false,
-        )
+        'example_list2' => array(),
     );
 
     /**
      * {@inheritdoc}
      */
-    public function __construct(array $config)
+    public function subcount($list = '')
     {
-        $this->api_key = $config['api_key'];
-        $this->installation_url = $config['installation_url'];
-        $this->list_id = $config['list_id'];
-    }
+        $list = $list === '' ? $this->list_id : $list;
 
-    /**
-     * {@inheritdoc}
-     */
-    public function subcount($list = "")
-    {
-        if ('' === $list ||
-            $this->list_id === $list) {
-            return array(
-                'status' => true,
-                'message' => count($this->subscribers),
-            );
+        if (!in_array($list, $this->lists)) {
+            return $this->response(false, 'Error.');
         }
 
-        return array(
-            'status' => false,
-            'message' => 'Error.'
-        );
+        return $this->response(true, count($this->subscribers[$list]));
     }
 
     /**
@@ -60,18 +43,12 @@ class SendyPHP extends Base
      */
     public function substatus($email)
     {
-        if ('example_list' === $this->list_id &&
-            isset($this->subscribers[$email])) {
-            return array(
-                'status' => true,
-                'message' => 'Subscribed'
-            );
+        if (!in_array($this->list_id, $this->lists) ||
+            !in_array($email, $this->subscribers[$this->list_id])) {
+            return $this->response(false, 'Error.');
         }
 
-        return array(
-            'status' => false,
-            'message' => 'Error'
-        );
+        return $this->response(true, 'Subscribed');
     }
 
     /**
@@ -79,24 +56,15 @@ class SendyPHP extends Base
      */
     public function subscribe(array $values)
     {
-        if ('example_list' === $this->list_id) {
-            if (isset($this->subscribers[$values['email']])) {
-                return array(
-                    'status' => true,
-                    'message' => 'Already subscribed'
-                );
-            }
-
-            return array(
-                'status' => true,
-                'message' => 'Subscribed'
-            );
+        if (!in_array($this->list_id, $this->lists)) {
+            return $this->response(false, 'Error.');
         }
 
-        return array(
-            'status' => false,
-            'message' => 'Error'
-        );
+        if (in_array($values['email'], $this->subscribers[$this->list_id])) {
+            return $this->response(true, 'Already subscribed');
+        }
+
+        return $this->response(true, 'Subscribed');
     }
 
     /**
@@ -104,18 +72,28 @@ class SendyPHP extends Base
      */
     public function unsubscribe($email)
     {
-        if ('example_list' === $this->list_id) {
-            if (isset($this->subscribers[$email])) {
-                return array(
-                    'status' => true,
-                    'message' => 'Unsubscribed'
-                );
-            }
+        if (!in_array($this->list_id, $this->lists) ||
+            !in_array($email, $this->subscribers[$this->list_id])) {
+            return $this->response(false, 'Error.');
         }
 
+        return $this->response(true, 'Unsubscribed');
+    }
+
+    /**
+     * Response
+     *
+     * @param bool $status
+     * @param string $message
+     *
+     * @access private
+     * @return array
+     */
+    private function response($status, $message = "")
+    {
         return array(
-            'status' => false,
-            'message' => 'Error'
+            'status' => $status,
+            'message' => $message,
         );
     }
 }

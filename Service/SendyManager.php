@@ -16,22 +16,11 @@ class SendyManager implements SendyManagerInterface
     protected $sendy;
 
     /**
-     * @param string $apiKey
-     * @param string $apiHost
-     * @param string $list
+     * {@inheritdoc}
      */
-    public function __construct(
-        $apiKey,
-        $apiHost,
-        $list
-    ) {
-        $config = array(
-            'api_key' => $apiKey,
-            'installation_url' => $apiHost,
-            'list_id' => $list
-        );
-
-        $this->sendy = new SendyPHP($config);
+    public function __construct(SendyPHP $sendy)
+    {
+        $this->sendy = $sendy;
     }
 
     /**
