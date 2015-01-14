@@ -2,8 +2,8 @@ TzbSendyBundle
 ===============
 
 [![SensioLabsInsight](https://insight.sensiolabs.com/projects/df46d30d-af90-4e31-b5af-c7dc4f4bd139/mini.png)](https://insight.sensiolabs.com/projects/df46d30d-af90-4e31-b5af-c7dc4f4bd139)
-[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/jkabat/TbzSendyBundle/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/jkabat/TbzSendyBundle/?branch=master)
-[![Build Status](https://travis-ci.org/jkabat/TbzSendyBundle.svg)](https://travis-ci.org/jkabat/TbzSendyBundle)
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/jkabat/TzbSendyBundle/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/jkabat/TzbSendyBundle/?branch=master)
+[![Build Status](https://travis-ci.org/jkabat/TzbSendyBundle.svg?branch=master)](https://travis-ci.org/jkabat/TzbSendyBundle)
 
 This bundle is used to integrate the [SendyPHP class from Jacob Bennett](https://github.com/JacobBennett/SendyPHP) into a symfony2 project.
 
