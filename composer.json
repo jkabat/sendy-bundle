@@ -3,7 +3,7 @@
     "type": "symfony-bundle",
     "description": "Symfony2 bundle that integrates SendyPHP class from Jacob Bennett: https://github.com/JacobBennett/SendyPHP.",
     "keywords": ["sendy", "sendy.co", "newsletter", "integration"],
-    "homepage": "https://github.com/jkabat/TbzSendyBundle",
+    "homepage": "https://github.com/jkabat/TzbSendyBundle",
     "license": "MIT",
     "authors": [
         {
