@@ -105,6 +105,16 @@ $status = $sendy->unsubscribe('email@example.com');
 Versions
 ========
 
+1.0.5 : 2015/01/14
+
+* repository rename
+* configuration files change
+
+1.0.4 : 2014/12/19
+
+* SendyPHP decoupling in SendyManager
+* unit tests improvements
+
 1.0.3 : 2014/12/16
 
 * minor doc enhancements
