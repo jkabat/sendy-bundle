@@ -1,5 +1,4 @@
-TzbSendyBundle
-===============
+# TzbSendyBundle
 
 [![SensioLabsInsight](https://insight.sensiolabs.com/projects/df46d30d-af90-4e31-b5af-c7dc4f4bd139/mini.png)](https://insight.sensiolabs.com/projects/df46d30d-af90-4e31-b5af-c7dc4f4bd139)
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/jkabat/TzbSendyBundle/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/jkabat/TzbSendyBundle/?branch=master)
@@ -7,11 +6,9 @@ TzbSendyBundle
 
 This bundle is used to integrate the [SendyPHP class from Jacob Bennett](https://github.com/JacobBennett/SendyPHP) into a symfony2 project.
 
-Installation
-============
+## Installation
 
-Step 1: Download the Bundle
----------------------------
+### Step 1: Download the Bundle
 
 Open a command console, enter your project directory and execute the
 following command to download the latest stable version of this bundle:
@@ -24,8 +21,7 @@ This command requires you to have Composer installed globally, as explained
 in the [installation chapter](https://getcomposer.org/doc/00-intro.md)
 of the Composer documentation.
 
-Step 2: Enable the Bundle
--------------------------
+### Step 2: Enable the Bundle
 
 Then, enable the bundle by adding the following line in the `app/AppKernel.php`
 file of your project:
@@ -52,8 +48,7 @@ class AppKernel extends Kernel
 }
 ```
 
-Step 3: Configure `sendy_manager` Service
------------------------------------------
+### Step 3: Configure `sendy_manager` Service
 
 ```yaml
 # app/config/config.yml
@@ -63,8 +58,7 @@ tzb_sendy:
     list_id: default_list_id
 ```
 
-Usage
-=====
+## Usage
 
 Get count of total active subscribers for default list:
 
@@ -101,35 +95,3 @@ Unsubscribe user from default list (other list id can be used as second paramete
 $sendy = $this->container->get('tzb_sendy.sendy_manager');
 $status = $sendy->unsubscribe('email@example.com');
 ```
-
-Versions
-========
-
-1.0.5 : 2015/01/14
-
-* repository rename
-* configuration files change
-
-1.0.4 : 2014/12/19
-
-* SendyPHP decoupling in SendyManager
-* unit tests improvements
-
-1.0.3 : 2014/12/16
-
-* minor doc enhancements
-* new: unit tests coverage
-
-1.0.2 : 2014/12/12
-
-* getError property removal
-* new: SendyException
-
-1.0.1 : 2014/12/11
-
-* doc enhancement
-* new: badges section
-
-1.0.0 : 2014/12/11
-
-* first release
