@@ -1,12 +1,12 @@
 <?php
 
-namespace Tzb\SendyBundle\Tests\DependencyInjection;
+namespace Tests\DependencyInjection;
 
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\Yaml\Parser;
-use Tzb\SendyBundle\DependencyInjection\TzbSendyExtension;
+use Sendy\SendyBundle\DependencyInjection\SendyExtension;
 
-class TzbSendyExtensionTest extends \PHPUnit_Framework_TestCase
+class SendyExtensionTest extends \PHPUnit_Framework_TestCase
 {
     /**
      * @expectedException \Symfony\Component\Config\Definition\Exception\InvalidConfigurationException
@@ -14,7 +14,7 @@ class TzbSendyExtensionTest extends \PHPUnit_Framework_TestCase
     public function testConfigLoadThrowsExceptionUnlessApiKeySet()
     {
         $container = new ContainerBuilder();
-        $loader = new TzbSendyExtension();
+        $loader = new SendyExtension();
         $config = $this->getEmptyConfig();
         unset($config['api_key']);
         $loader->load(array($config), $container);
@@ -26,7 +26,7 @@ class TzbSendyExtensionTest extends \PHPUnit_Framework_TestCase
     public function testConfigLoadThrowsExceptionUnlessApiHostSet()
     {
         $container = new ContainerBuilder();
-        $loader = new TzbSendyExtension();
+        $loader = new SendyExtension();
         $config = $this->getEmptyConfig();
         unset($config['api_host']);
         $loader->load(array($config), $container);
@@ -38,7 +38,7 @@ class TzbSendyExtensionTest extends \PHPUnit_Framework_TestCase
     public function testConfigLoadThrowsExceptionUnlessListIdSet()
     {
         $container = new ContainerBuilder();
-        $loader = new TzbSendyExtension();
+        $loader = new SendyExtension();
         $config = $this->getEmptyConfig();
         unset($config['list_id']);
         $loader->load(array($config), $container);
@@ -50,7 +50,7 @@ class TzbSendyExtensionTest extends \PHPUnit_Framework_TestCase
     public function testDefault()
     {
         $container = new ContainerBuilder();
-        $loader = new TzbSendyExtension();
+        $loader = new SendyExtension();
         $config = $this->getEmptyConfig();
         $loader->load(array($config), $container);
 

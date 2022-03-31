@@ -1,6 +1,6 @@
 <?php
 
-namespace Tzb\SendyBundle\Tests\Mocks;
+namespace Tests\Mocks;
 
 use SendyPHP\SendyPHP as Base;
 

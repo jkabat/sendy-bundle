@@ -1,6 +1,6 @@
 <?php
 
-namespace Tzb\SendyBundle;
+namespace Sendy\SendyBundle;
 
 use Exception;
 

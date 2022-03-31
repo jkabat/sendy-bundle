@@ -38,7 +38,7 @@ class AppKernel extends Kernel
         $bundles = array(
             // ...
 
-            new Tzb\SendyBundle\TzbSendyBundle(),
+            new Tzb\SendyBundle\SendyBundle(),
         );
 
         // ...

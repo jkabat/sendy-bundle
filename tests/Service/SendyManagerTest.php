@@ -1,10 +1,10 @@
 <?php
 
-namespace Tzb\SendyBundle\Tests\Service;
+namespace Tests\Service;
 
-use Tzb\SendyBundle\Service\SendyManager;
-use Tzb\SendyBundle\Service\SendyManagerInterface;
-use Tzb\SendyBundle\Tests\Mocks\SendyPHP;
+use Sendy\SendyBundle\Service\SendyManager;
+use Sendy\SendyBundle\Service\SendyManagerInterface;
+use Tests\Mocks\SendyPHP;
 
 /**
  * Test class for SendyManager

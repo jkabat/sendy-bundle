@@ -6,7 +6,7 @@
 
     <parameters>
         <parameter key="tzb_sendy.sendyphp.class">SendyPHP\SendyPHP</parameter>
-        <parameter key="tzb_sendy.sendy_manager.class">Tzb\SendyBundle\Service\SendyManager</parameter>
+        <parameter key="tzb_sendy.sendy_manager.class">Sendy\SendyBundle\Service\SendyManager</parameter>
     </parameters>
 
     <services>

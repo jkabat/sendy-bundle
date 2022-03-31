@@ -1,8 +1,8 @@
 <?php
 
-namespace Tzb\SendyBundle\Service;
+namespace Sendy\SendyBundle\Service;
 
-use Tzb\SendyBundle\SendyException;
+use Sendy\SendyBundle\SendyException;
 
 /**
  * Manager interface for communication with Sendy.co api

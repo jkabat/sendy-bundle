@@ -1,9 +1,9 @@
 <?php
 
-namespace Tzb\SendyBundle\Service;
+namespace Sendy\SendyBundle\Service;
 
 use SendyPHP\SendyPHP;
-use Tzb\SendyBundle\SendyException;
+use Sendy\SendyBundle\SendyException;
 
 /**
  * Manager for communication with Sendy.co api
