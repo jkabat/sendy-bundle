@@ -13,8 +13,8 @@ final class Configuration implements ConfigurationInterface
     public function getConfigTreeBuilder(): TreeBuilder
     {
         $treeBuilder = new TreeBuilder('sendy');
-        $rootNode = $treeBuilder->getRootNode();
 
+        $rootNode = $treeBuilder->getRootNode();
         $this->addSendySection($rootNode);
 
         return $treeBuilder;

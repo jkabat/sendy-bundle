@@ -14,7 +14,7 @@ final class SendyExtensionTest extends TestCase
 {
     public function testConfigLoadThrowsExceptionUnlessApiKeySet(): void
     {
-        $this->expectException(InvalidConfigurationException::class);
+        self::expectException(InvalidConfigurationException::class);
 
         $config = $this->getEmptyConfig();
         unset($config['api_key']);
@@ -24,7 +24,7 @@ final class SendyExtensionTest extends TestCase
 
     public function testConfigLoadThrowsExceptionUnlessApiHostSet(): void
     {
-        $this->expectException(InvalidConfigurationException::class);
+        self::expectException(InvalidConfigurationException::class);
 
         $config = $this->getEmptyConfig();
         unset($config['api_host']);
@@ -34,7 +34,7 @@ final class SendyExtensionTest extends TestCase
 
     public function testConfigLoadThrowsExceptionUnlessListIdSet(): void
     {
-        $this->expectException(InvalidConfigurationException::class);
+        self::expectException(InvalidConfigurationException::class);
 
         $config = $this->getEmptyConfig();
         unset($config['list_id']);
@@ -48,13 +48,16 @@ final class SendyExtensionTest extends TestCase
         $extension = new SendyExtension();
         $extension->load([$this->getEmptyConfig()], $container);
 
-        $this->assertEquals('example_key', $container->getParameter('sendy.api_key'));
-        $this->assertEquals('https://example.host', $container->getParameter('sendy.api_host'));
-        $this->assertEquals('example_list', $container->getParameter('sendy.list_id'));
+        self::assertEquals('example_key', $container->getParameter('sendy.api_key'));
+        self::assertEquals('https://example.host', $container->getParameter('sendy.api_host'));
+        self::assertEquals('example_list', $container->getParameter('sendy.list_id'));
 
-        $this->assertTrue($container->hasDefinition('sendy.sendy_manager'), 'Manager service is loaded');
+        self::assertTrue($container->hasDefinition('sendy.sendy_manager'), 'Manager service is loaded');
     }
 
+    /**
+     * @return array<string, string>
+     */
     private function getEmptyConfig(): array
     {
         $yaml = <<<EOF
@@ -63,7 +66,7 @@ api_host: example.host
 list_id: example_list
 EOF;
         $parser = new Parser();
-
+        // @phpstan-ignore-next-line
         return $parser->parse($yaml);
     }
 }
