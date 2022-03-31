@@ -1,43 +1,35 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Tests\Service;
 
+use PHPUnit\Framework\TestCase;
+use Sendy\SendyBundle\SendyException;
 use Sendy\SendyBundle\Service\SendyManager;
 use Sendy\SendyBundle\Service\SendyManagerInterface;
 use Tests\Mocks\SendyPHP;
 
-/**
- * Test class for SendyManager
- *
- * @author Juraj Kabát <kabat.juraj@gmail.com>
- */
-class SendyManagerTest extends \PHPUnit_Framework_TestCase 
+final class SendyManagerTest extends TestCase
 {
-    /** @var SendyManager */
-    private $manager;
+    private ?SendyManager $manager = null;
 
-    /**
-     * {@inheritdoc}
-     */
-    protected function setUp()
+    protected function setUp(): void
     {
         parent::setUp();
 
         // create mock for SendyPHP library
-        $sendy = new SendyPHP(array(
+        $sendy = new SendyPHP([
             'api_key'           => 'example_key',
             'installation_url'  => 'example.host',
             'list_id'           => 'example_list',
-        ));
+        ]);
 
         // create SendyManager object
         $this->manager = new SendyManager($sendy);
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    protected function tearDown()
+    protected function tearDown(): void
     {
         unset($this->manager);
     }
@@ -58,11 +50,9 @@ class SendyManagerTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals((int) 2, $this->manager->getSubscriberCount());
     }
 
-    /**
-     * @expectedException \Tzb\SendyBundle\SendyException
-     */
     public function testGetSubscriberCountWithWrongList()
     {
+        $this->expectException(SendyException::class);
         $this->manager->getSubscriberCount('wrong_list');
     }
 
@@ -74,19 +64,15 @@ class SendyManagerTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals('Subscribed', $this->manager->getSubscriberStatus('john@example.com'));
     }
 
-    /**
-     * @expectedException \Tzb\SendyBundle\SendyException
-     */
     public function testGetSubscriberStatusWithWrongEmail()
     {
+        $this->expectException(SendyException::class);
         $this->manager->getSubscriberStatus('fred@example.com');
     }
 
-    /**
-     * @expectedException \Tzb\SendyBundle\SendyException
-     */
     public function testGetSubscriberStatusWithWrongList()
     {
+        $this->expectException(SendyException::class);
         $this->manager->getSubscriberStatus('john@example.com', 'wrong_list');
     }
 
@@ -106,11 +92,9 @@ class SendyManagerTest extends \PHPUnit_Framework_TestCase
         $this->assertTrue($this->manager->subscribe('John Doe', 'john@example.com'));
     }
 
-    /**
-     * @expectedException \Tzb\SendyBundle\SendyException
-     */
     public function testSubscribeWithWrongList()
     {
+        $this->expectException(SendyException::class);
         $this->manager->subscribe('Fred Combs', 'fred@example.com', 'wrong_list');
     }
 
@@ -122,19 +106,15 @@ class SendyManagerTest extends \PHPUnit_Framework_TestCase
         $this->assertTrue($this->manager->unsubscribe('john@example.com'));
     }
 
-    /**
-     * @expectedException \Tzb\SendyBundle\SendyException
-     */
     public function testUnsubscribeWithWrongEmail()
     {
+        $this->expectException(SendyException::class);
         $this->manager->unsubscribe('fred@example.com');
     }
 
-    /**
-     * @expectedException \Tzb\SendyBundle\SendyException
-     */
     public function testUnsubscribeWithWrongList()
     {
+        $this->expectException(SendyException::class);
         $this->manager->unsubscribe('fred@example.com', 'wrong_list');
     }
 }

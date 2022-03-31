@@ -1,18 +1,21 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Tests\DependencyInjection;
 
+use PHPUnit\Framework\TestCase;
+use Symfony\Component\Config\Definition\Exception\InvalidConfigurationException;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\Yaml\Parser;
 use Sendy\SendyBundle\DependencyInjection\SendyExtension;
 
-class SendyExtensionTest extends \PHPUnit_Framework_TestCase
+final class SendyExtensionTest extends TestCase
 {
-    /**
-     * @expectedException \Symfony\Component\Config\Definition\Exception\InvalidConfigurationException
-     */
-    public function testConfigLoadThrowsExceptionUnlessApiKeySet()
+    public function testConfigLoadThrowsExceptionUnlessApiKeySet(): void
     {
+        $this->expectException(InvalidConfigurationException::class);
+
         $container = new ContainerBuilder();
         $loader = new SendyExtension();
         $config = $this->getEmptyConfig();
@@ -20,11 +23,10 @@ class SendyExtensionTest extends \PHPUnit_Framework_TestCase
         $loader->load(array($config), $container);
     }
 
-    /**
-     * @expectedException \Symfony\Component\Config\Definition\Exception\InvalidConfigurationException
-     */
-    public function testConfigLoadThrowsExceptionUnlessApiHostSet()
+    public function testConfigLoadThrowsExceptionUnlessApiHostSet(): void
     {
+        $this->expectException(InvalidConfigurationException::class);
+
         $container = new ContainerBuilder();
         $loader = new SendyExtension();
         $config = $this->getEmptyConfig();
@@ -32,11 +34,10 @@ class SendyExtensionTest extends \PHPUnit_Framework_TestCase
         $loader->load(array($config), $container);
     }
 
-    /**
-     * @expectedException \Symfony\Component\Config\Definition\Exception\InvalidConfigurationException
-     */
-    public function testConfigLoadThrowsExceptionUnlessListIdSet()
+    public function testConfigLoadThrowsExceptionUnlessListIdSet(): void
     {
+        $this->expectException(InvalidConfigurationException::class);
+
         $container = new ContainerBuilder();
         $loader = new SendyExtension();
         $config = $this->getEmptyConfig();
@@ -44,10 +45,7 @@ class SendyExtensionTest extends \PHPUnit_Framework_TestCase
         $loader->load(array($config), $container);
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function testDefault()
+    public function testDefault(): void
     {
         $container = new ContainerBuilder();
         $loader = new SendyExtension();
@@ -63,12 +61,7 @@ class SendyExtensionTest extends \PHPUnit_Framework_TestCase
         $this->assertTrue($container->hasDefinition('tzb_sendy.sendy_manager'), 'Manager service is loaded');
     }
 
-    /**
-     * getEmptyConfig
-     *
-     * @return array
-     */
-    protected function getEmptyConfig()
+    private function getEmptyConfig(): array
     {
         $yaml = <<<EOF
 api_key: example_key

@@ -1,33 +1,27 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Tests\Mocks;
 
 use SendyPHP\SendyPHP as Base;
 
-/**
- * Mock of SendyPHP library
- *
- * @author Juraj Kabát <kabat.juraj@gmail.com>
- */
-class SendyPHP extends Base
+final class SendyPHP extends Base
 {
-    private $lists = array(
+    private array $lists = [
         'example_list',
         'example_list2',
-    );
+    ];
 
-    private $subscribers = array(
-        'example_list' => array(
+    private array $subscribers = [
+        'example_list' => [
             'john@example.com',
             'jane@example.com',
-        ),
-        'example_list2' => array(),
-    );
+        ],
+        'example_list2' => [],
+    ];
 
-    /**
-     * {@inheritdoc}
-     */
-    public function subcount($list = '')
+    public function subcount($list = ''): array
     {
         $list = $list === '' ? $this->list_id : $list;
 
@@ -35,13 +29,10 @@ class SendyPHP extends Base
             return $this->response(false, 'Error.');
         }
 
-        return $this->response(true, count($this->subscribers[$list]));
+        return $this->response(true, (string) count($this->subscribers[$list]));
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function substatus($email)
+    public function substatus($email): array
     {
         if (!in_array($this->list_id, $this->lists) ||
             !in_array($email, $this->subscribers[$this->list_id])) {
@@ -51,10 +42,7 @@ class SendyPHP extends Base
         return $this->response(true, 'Subscribed');
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function subscribe(array $values)
+    public function subscribe(array $values): array
     {
         if (!in_array($this->list_id, $this->lists)) {
             return $this->response(false, 'Error.');
@@ -67,10 +55,7 @@ class SendyPHP extends Base
         return $this->response(true, 'Subscribed');
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function unsubscribe($email)
+    public function unsubscribe($email): array
     {
         if (!in_array($this->list_id, $this->lists) ||
             !in_array($email, $this->subscribers[$this->list_id])) {
@@ -80,20 +65,11 @@ class SendyPHP extends Base
         return $this->response(true, 'Unsubscribed');
     }
 
-    /**
-     * Response
-     *
-     * @param bool $status
-     * @param string $message
-     *
-     * @access private
-     * @return array
-     */
-    private function response($status, $message = "")
+    private function response(bool $status, string $message = ""): array
     {
-        return array(
+        return [
             'status' => $status,
             'message' => $message,
-        );
+        ];
     }
 }

@@ -20,15 +20,19 @@
         "symfony/yaml": "^4.4|^5.4|^6.0"
     },
     "require-dev": {
-        "symfony/phpunit-bridge": "^4.4|^5.4|^6.0"
+        "symfony/phpunit-bridge": "^5.4|^6.0"
+    },
+    "scripts": {
+        "test": "@php vendor/bin/simple-phpunit"
     },
     "autoload": {
         "psr-4": { "Sendy\\SendyBundle\\": "src/" }
     },
     "autoload-dev": {
-        "psr-4": { "Sendy\\SendyBundle\\Tests\\": "tests/" }
+        "psr-4": { "Tests\\": "tests/" }
     },
     "config": {
+        "allow-plugins": true,
         "preferred-install": "dist",
         "sort-packages": true
     }
