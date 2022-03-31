@@ -16,49 +16,43 @@ final class SendyExtensionTest extends TestCase
     {
         $this->expectException(InvalidConfigurationException::class);
 
-        $container = new ContainerBuilder();
-        $loader = new SendyExtension();
         $config = $this->getEmptyConfig();
         unset($config['api_key']);
-        $loader->load(array($config), $container);
+        $extension = new SendyExtension();
+        $extension->load([$config], new ContainerBuilder());
     }
 
     public function testConfigLoadThrowsExceptionUnlessApiHostSet(): void
     {
         $this->expectException(InvalidConfigurationException::class);
 
-        $container = new ContainerBuilder();
-        $loader = new SendyExtension();
         $config = $this->getEmptyConfig();
         unset($config['api_host']);
-        $loader->load(array($config), $container);
+        $extension = new SendyExtension();
+        $extension->load([$config], new ContainerBuilder());
     }
 
     public function testConfigLoadThrowsExceptionUnlessListIdSet(): void
     {
         $this->expectException(InvalidConfigurationException::class);
 
-        $container = new ContainerBuilder();
-        $loader = new SendyExtension();
         $config = $this->getEmptyConfig();
         unset($config['list_id']);
-        $loader->load(array($config), $container);
+        $extension = new SendyExtension();
+        $extension->load([$config], new ContainerBuilder());
     }
 
     public function testDefault(): void
     {
         $container = new ContainerBuilder();
-        $loader = new SendyExtension();
-        $config = $this->getEmptyConfig();
-        $loader->load(array($config), $container);
+        $extension = new SendyExtension();
+        $extension->load([$this->getEmptyConfig()], $container);
 
-        // assert parameters
-        $this->assertEquals($container->getParameter('tzb_sendy.api_key'), 'example_key');
-        $this->assertEquals($container->getParameter('tzb_sendy.api_host'), 'http://example.host');
-        $this->assertEquals($container->getParameter('tzb_sendy.list_id'), 'example_list');
+        $this->assertEquals('example_key', $container->getParameter('sendy.api_key'));
+        $this->assertEquals('https://example.host', $container->getParameter('sendy.api_host'));
+        $this->assertEquals('example_list', $container->getParameter('sendy.list_id'));
 
-        // assert service definition
-        $this->assertTrue($container->hasDefinition('tzb_sendy.sendy_manager'), 'Manager service is loaded');
+        $this->assertTrue($container->hasDefinition('sendy.sendy_manager'), 'Manager service is loaded');
     }
 
     private function getEmptyConfig(): array

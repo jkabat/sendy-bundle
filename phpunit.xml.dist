@@ -5,11 +5,9 @@
          xsi:noNamespaceSchemaLocation="vendor/bin/.phpunit/phpunit/phpunit.xsd"
          backupGlobals="false"
          colors="true"
-         convertErrorsToExceptions = "true"
-         convertNoticesToExceptions = "true"
-         convertWarningsToExceptions = "true"
-         processIsolation = "false"
-         stopOnFailure = "false"
+         convertDeprecationsToExceptions="false"
+         processIsolation="false"
+         stopOnFailure="false"
          bootstrap="./vendor/autoload.php"
 >
     <php>

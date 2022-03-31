@@ -1,44 +1,34 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Sendy\SendyBundle\DependencyInjection;
 
 use Symfony\Component\Config\Definition\Builder\ArrayNodeDefinition;
 use Symfony\Component\Config\Definition\Builder\TreeBuilder;
 use Symfony\Component\Config\Definition\ConfigurationInterface;
 
-/**
- * This is the class that validates and merges configuration from your app/config files
- *
- * To learn more see {@link http://symfony.com/doc/current/cookbook/bundles/extension.html#cookbook-bundles-extension-config-class}
- */
-class Configuration implements ConfigurationInterface
+final class Configuration implements ConfigurationInterface
 {
-    /**
-     * {@inheritdoc}
-     */
-    public function getConfigTreeBuilder()
+    public function getConfigTreeBuilder(): TreeBuilder
     {
-        $treeBuilder = new TreeBuilder();
-        $rootNode = $treeBuilder->root('tzb_sendy');
+        $treeBuilder = new TreeBuilder('sendy');
+        $rootNode = $treeBuilder->getRootNode();
 
-        // define the parameters that are allowed to configure your SendyBundle
         $this->addSendySection($rootNode);
 
         return $treeBuilder;
     }
 
     /**
-     * Parses the tzb_sendy block config section
+     * Parses the "sendy" block config section
      * Example for yaml section:
-     * tzb_sendy:
+     * sendy:
      *     api_key: "yourapiKEYHERE"
-     *     api_host: "http://updates.mydomain.com"
+     *     api_host: "https://updates.mydomain.com"
      *     list_id: "your_list_id_goes_here"
-     *
-     * @param ArrayNodeDefinition $node
-     * @return void
      */
-    private function addSendySection(ArrayNodeDefinition $node)
+    private function addSendySection(ArrayNodeDefinition $node): void
     {
         $node
             ->children()
@@ -54,7 +44,6 @@ class Configuration implements ConfigurationInterface
                     ->isRequired()
                     ->cannotBeEmpty()
                 ->end()
-            ->end()
-        ;
+            ->end();
     }
 }

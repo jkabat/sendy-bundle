@@ -1,14 +1,11 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Sendy\SendyBundle;
 
 use Exception;
 
-/**
- * Sendy exception
- *
- * @author Juraj Kabát <kabat.juraj@gmail.com>
- */
-class SendyException extends Exception
+final class SendyException extends Exception
 {
 }

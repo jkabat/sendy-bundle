@@ -23,7 +23,7 @@ final class SendyPHP extends Base
 
     public function subcount($list = ''): array
     {
-        $list = $list === '' ? $this->list_id : $list;
+        $list = '' === $list ? $this->list_id : $list;
 
         if (!in_array($list, $this->lists)) {
             return $this->response(false, 'Error.');
@@ -65,7 +65,7 @@ final class SendyPHP extends Base
         return $this->response(true, 'Unsubscribed');
     }
 
-    private function response(bool $status, string $message = ""): array
+    private function response(bool $status, string $message = ''): array
     {
         return [
             'status' => $status,

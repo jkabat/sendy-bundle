@@ -1,6 +1,5 @@
 # TzbSendyBundle
 
-[![SensioLabsInsight](https://insight.sensiolabs.com/projects/df46d30d-af90-4e31-b5af-c7dc4f4bd139/mini.png)](https://insight.sensiolabs.com/projects/df46d30d-af90-4e31-b5af-c7dc4f4bd139)
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/jkabat/TzbSendyBundle/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/jkabat/TzbSendyBundle/?branch=master)
 [![Build Status](https://travis-ci.org/jkabat/TzbSendyBundle.svg?branch=master)](https://travis-ci.org/jkabat/TzbSendyBundle)
 
@@ -14,7 +13,7 @@ Open a command console, enter your project directory and execute the
 following command to download the latest stable version of this bundle:
 
 ```bash
-$ composer require tzb/sendy-bundle "~1"
+$ composer require jkabat/sendy-bundle ~2
 ```
 
 This command requires you to have Composer installed globally, as explained
@@ -35,11 +34,11 @@ class AppKernel extends Kernel
 {
     public function registerBundles()
     {
-        $bundles = array(
+        $bundles = [
             // ...
 
-            new Tzb\SendyBundle\SendyBundle(),
-        );
+            new Sendy\SendyBundle\SendyBundle(),
+        ];
 
         // ...
     }
@@ -52,9 +51,9 @@ class AppKernel extends Kernel
 
 ```yaml
 # app/config/config.yml
-tzb_sendy:
+sendy:
     api_key: sendy_api_key
-    api_host: http://sendy.installation.url
+    api_host: https://sendy.installation.url
     list_id: default_list_id
 ```
 
@@ -64,7 +63,7 @@ Get count of total active subscribers for default list:
 
 ```php
 // get service
-$sendy = $this->container->get('tzb_sendy.sendy_manager');
+$sendy = $this->container->get('sendy.sendy_manager');
 $count = $sendy->getSubscriberCount();
 ```
 

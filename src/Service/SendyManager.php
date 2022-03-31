@@ -1,142 +1,117 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Sendy\SendyBundle\Service;
 
 use SendyPHP\SendyPHP;
 use Sendy\SendyBundle\SendyException;
 
-/**
- * Manager for communication with Sendy.co api
- *
- * @author Juraj Kabát <kabat.juraj@gmail.com>
- */
-class SendyManager implements SendyManagerInterface
+final class SendyManager implements SendyManagerInterface
 {
-    /** @var SendyPHP */
-    protected $sendy;
+    private SendyPHP $sendy;
 
-    /**
-     * {@inheritdoc}
-     */
     public function __construct(SendyPHP $sendy)
     {
         $this->sendy = $sendy;
     }
 
     /**
-     * Get count of total active subscribers for the list
-     *
-     * @param string $list
-     *
-     * @access public
-     * @return int
      * @throws SendyException
      */
-    public function getSubscriberCount($list = '')
-    {
-        $result = $this->sendy->subcount($list);
-
-        // check status and throw exception
-        if (false === $result['status']) {
-            throw new SendyException($result['message']);
-        }
-
-        return (int) $result['message'];
-    }
-
-    /**
-     * Get subscriber status for particular email
-     *
-     * @param string $email
-     * @param string $list
-     *
-     * @access public
-     * @return string
-     * @throws SendyException
-     */
-    public function getSubscriberStatus($email, $list = '')
+    public function getSubscriberCount(string $list = ''): int
     {
         if ('' !== $list) {
             $this->setList($list);
         }
 
-        $result = $this->sendy->substatus($email);
+        try {
+            $result = $this->sendy->subcount($list);
 
-        // check status and throw exception
-        if (false === $result['status']) {
-            throw new SendyException($result['message']);
+            if (false === $result['status']) { // check status and throw exception
+                throw new SendyException($result['message']);
+            }
+
+            return (int) $result['message'];
+        } catch (\Exception $exception) {
+            throw new SendyException($exception->getMessage());
         }
-
-        return $result['message'];
     }
 
     /**
-     * Change list to a new one
-     *
-     * @param string $list
-     *
-     * @access public
-     */
-    public function setList($list)
-    {
-        $this->sendy->setListId($list);
-    }
-
-    /**
-     * Subscribe particular email
-     *
-     * @param string $name
-     * @param string $email
-     * @param string $list
-     *
-     * @access public
-     * @return bool
      * @throws SendyException
      */
-    public function subscribe($name, $email, $list = '')
+    public function getSubscriberStatus(string $email, string $list = ''): string
     {
         if ('' !== $list) {
             $this->setList($list);
         }
 
-        $config = array(
-            'name' => $name,
-            'email' => $email,
-        );
+        try {
+            $result = $this->sendy->substatus($email);
 
-        $result = $this->sendy->subscribe($config);
+            if (false === $result['status']) { // check status and throw exception
+                throw new SendyException($result['message']);
+            }
 
-        // check status and throw exception
-        if (false === $result['status']) {
-            throw new SendyException($result['message']);
+            return $result['message'];
+        } catch (\Exception $exception) {
+            throw new SendyException($exception->getMessage());
         }
-
-        return true;
     }
 
     /**
-     * Unsubscribe particular email
-     *
-     * @param string $email
-     * @param string $list
-     *
-     * @access public
-     * @return bool
      * @throws SendyException
      */
-    public function unsubscribe($email, $list = '')
+    public function setList(string $list): void
+    {
+        try {
+            $this->sendy->setListId($list);
+        } catch (\Exception $exception) {
+            throw new SendyException($exception->getMessage());
+        }
+    }
+
+    /**
+     * @throws SendyException
+     */
+    public function subscribe(string $name, string $email, string $list = ''): void
     {
         if ('' !== $list) {
             $this->setList($list);
         }
 
-        $result = $this->sendy->unsubscribe($email);
+        try {
+            $result = $this->sendy->subscribe([
+                'name' => $name,
+                'email' => $email,
+            ]);
 
-        // check status and throw exception
-        if (false === $result['status']) {
-            throw new SendyException($result['message']);
+            if (false === $result['status']) { // check status and throw exception
+                throw new SendyException($result['message']);
+            }
+        } catch (\Exception $exception) {
+            throw new SendyException($exception->getMessage());
+        }
+    }
+
+    /**
+     * @throws SendyException
+     */
+    public function unsubscribe(string $email, string $list = ''): void
+    {
+        if ('' !== $list) {
+            $this->setList($list);
         }
 
-        return true;
+        try {
+            $result = $this->sendy->unsubscribe($email);
+
+            if (false === $result['status']) { // check status and throw exception
+                throw new SendyException($result['message']);
+            }
+        } catch (\Exception $exception) {
+            throw new SendyException($exception->getMessage());
+        }
     }
 }
