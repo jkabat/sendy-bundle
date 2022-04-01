@@ -27,6 +27,7 @@ final class SendyPHP extends Base
 
     /**
      * @param string|mixed $list
+     *
      * @return array<string, bool|string>
      */
     public function subcount($list = ''): array
@@ -42,6 +43,7 @@ final class SendyPHP extends Base
 
     /**
      * @param string|mixed $email
+     *
      * @return array<string, bool|string>
      */
     public function substatus($email): array
@@ -56,6 +58,7 @@ final class SendyPHP extends Base
 
     /**
      * @param array<string, string>|array<mixed> $values
+     *
      * @return array<string, bool|string>
      */
     public function subscribe(array $values): array
@@ -73,6 +76,7 @@ final class SendyPHP extends Base
 
     /**
      * @param string|mixed $email
+     *
      * @return array<string, bool|string>
      */
     public function unsubscribe($email): array
@@ -86,8 +90,6 @@ final class SendyPHP extends Base
     }
 
     /**
-     * @param bool $status
-     * @param string $message
      * @return array<string, bool|string>
      */
     private function response(bool $status, string $message = ''): array

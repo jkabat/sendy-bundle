@@ -19,7 +19,7 @@
             </argument>
         </service>
 
-        <!-- Sendy wrapper service -->
+        <!-- Sendy manager service -->
         <service id="sendy.sendy_manager" class="%sendy.sendy_manager.class%">
             <argument type="service" id="sendy.sendyphp"/>
         </service>

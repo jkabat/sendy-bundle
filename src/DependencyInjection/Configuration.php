@@ -26,7 +26,7 @@ final class Configuration implements ConfigurationInterface
      * sendy:
      *     api_key: "yourapiKEYHERE"
      *     api_host: "https://updates.mydomain.com"
-     *     list_id: "your_list_id_goes_here"
+     *     list_id: "your_list_id_goes_here".
      */
     private function addSendySection(ArrayNodeDefinition $node): void
     {

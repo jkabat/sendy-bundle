@@ -5,10 +5,10 @@ declare(strict_types=1);
 namespace Tests\DependencyInjection;
 
 use PHPUnit\Framework\TestCase;
+use Sendy\SendyBundle\DependencyInjection\SendyExtension;
 use Symfony\Component\Config\Definition\Exception\InvalidConfigurationException;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\Yaml\Parser;
-use Sendy\SendyBundle\DependencyInjection\SendyExtension;
 
 final class SendyExtensionTest extends TestCase
 {

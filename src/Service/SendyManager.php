@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Sendy\SendyBundle\Service;
 
-use SendyPHP\SendyPHP;
 use Sendy\SendyBundle\SendyException;
+use SendyPHP\SendyPHP;
 
 final class SendyManager implements SendyManagerInterface
 {

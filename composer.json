@@ -24,11 +24,14 @@
         "phpstan/phpstan-strict-rules": "^1.1",
         "phpstan/phpstan-symfony": "^1.1",
         "phpunit/phpunit": "^9.5",
-        "symfony/phpunit-bridge": "^5.4|^6.0"
+        "symfony/phpunit-bridge": "^5.4|^6.0",
+        "symplify/easy-coding-standard": "^10.1"
     },
     "scripts": {
+        "cs": "vendor/bin/ecs check",
+        "cs-fix": "vendor/bin/ecs check --fix",
         "stan": "vendor/bin/phpstan analyse --ansi --memory-limit=1G",
-        "test": "@php vendor/bin/phpunit"
+        "test": "vendor/bin/phpunit"
     },
     "autoload": {
         "psr-4": { "Sendy\\SendyBundle\\": "src/" }
