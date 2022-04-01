@@ -1,0 +1,13 @@
+includes:
+    - vendor/phpstan/phpstan/conf/bleedingEdge.neon
+    - vendor/phpstan/phpstan-strict-rules/rules.neon
+    - vendor/phpstan/phpstan-symfony/extension.neon
+
+parameters:
+    level: max
+    tmpDir: var/cache/phpstan
+    checkGenericClassInNonGenericObjectType: true
+    checkUninitializedProperties: true
+    paths:
+        - src
+        - tests
