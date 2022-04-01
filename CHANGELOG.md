@@ -1,5 +1,11 @@
 # Changelog
 
+## [v2.0.0] 2022-04-01
+
+* bump Symfony to 4.4+
+* drop support of PHP < 7.4
+* throw PHPStan & ECS into the mix
+
 ## [v1.0.6] 2018-02-22
 
 * update dependencies for Symfony 3 (sirgix)
